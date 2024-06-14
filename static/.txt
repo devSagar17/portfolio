@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ivan Dan - Portfolio</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #fbbf24;
+        --secondary-color: #2d3748;
+        --bg-color: #f7fafc;
+        --text-color: #2d3748;
+        --text-secondary-color: #4a5568;
+        --text-gray: #718096;
+        --header-bg: #1a202c;
+        --skill-bg: #edf2f7;
+        --skill-text-color: #2d3748;
+        --contact-bg: #2d3748;
+        --contact-text-color: #f7fafc;
+        --hover-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        --transition-speed: 0.3s;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-color);
+        color: var(--text-color);
+        margin: 0;
+      }
+      header {
+        background: var(--header-bg);
+        color: var(--primary-color);
+        padding: 100px 50px;
+        text-align: left;
+        position: relative;
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+        overflow: hidden;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      header .header-content {
+        max-width: 800px;
+      }
+      header .header-content h1 {
+        font-size: 3.5rem;
+        font-weight: bold;
+        animation: slideInFromLeft 1s ease-out;
+        margin: 0;
+      }
+      header .header-content p {
+        margin: 10px 0 20px;
+        font-size: 1.5rem;
+        color: var(--text-secondary-color);
+        animation: fadeIn 2s ease-in;
+      }
+      header .header-content button {
+        background: var(--primary-color);
+        color: var(--header-bg);
+        padding: 15px 30px;
+        border: none;
+        cursor: pointer;
+        border-radius: 12px;
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+        transition: transform var(--transition-speed),
+          box-shadow var(--transition-speed);
+        font-size: 1rem;
+        font-weight: bold;
+      }
+      header .header-content button:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--hover-shadow);
+      }
+      header .profile-picture img {
+        border: 5px solid var(--primary-color);
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        margin: 35px 0;
+        animation: slideInFromRight 1s ease-out;
+      }
+      section {
+        margin: 40px 0;
+        padding: 20px;
+      }
+      #about {
+        text-align: center;
+        padding: 60px 20px;
+      }
+      #about h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--text-secondary-color);
+        font-family: "Merriweather", serif;
+      }
+      #about p {
+        color: var(--text-gray);
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      #skills {
+        background: var(--bg-color);
+        padding: 60px 20px;
+        text-align: center;
+      }
+      #skills h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--text-secondary-color);
+        font-family: "Merriweather", serif;
+      }
+      .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+      .skills-grid .skill {
+        background: var(--skill-bg);
+        color: var(--skill-text-color);
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+        transition: transform var(--transition-speed),
+          box-shadow var(--transition-speed);
+        flex: 1 1 150px;
+        max-width: 150px;
+      }
+      .skills-grid .skill:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--hover-shadow);
+      }
+      .skills-grid .skill img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 10px;
+        margin-left: 25px;
+      }
+      #portfolio {
+        background: var(--bg-color);
+        padding: 60px 20px;
+        text-align: center;
+      }
+      #portfolio h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--text-secondary-color);
+        font-family: "Merriweather", serif;
+      }
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      .portfolio-grid .portfolio-item {
+        background: var(--skill-bg);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+        transition: transform var(--transition-speed),
+          box-shadow var(--transition-speed);
+        position: relative;
+      }
+      .portfolio-grid .portfolio-item:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--hover-shadow);
+      }
+      .portfolio-grid .portfolio-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform var(--transition-speed);
+      }
+      .portfolio-grid .portfolio-item:hover img {
+        transform: scale(1.1);
+      }
+      .portfolio-grid .portfolio-item h3 {
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        margin: 0;
+        padding: 10px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        transition: opacity var(--transition-speed);
+      }
+      .portfolio-grid .portfolio-item:hover h3 {
+        opacity: 1;
+      }
+      #experience {
+        background: var(--bg-color);
+        padding: 60px 20px;
+        text-align: center;
+      }
+
+      #experience h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--text-secondary-color);
+        font-family: "Merriweather", serif;
+      }
+
+      .timeline-container {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 0;
+      }
+
+      .timeline-line {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 4px;
+        height: 100%;
+        background: var(--primary-color);
+        transform: translateX(-50%);
+        z-index: 0;
+      }
+
+      .timeline .experience-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 40px;
+        position: relative;
+        z-index: 1;
+        justify-content: center;
+      }
+
+      .experience-item:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .year-container {
+        flex: 0 0 80px;
+        text-align: center;
+        margin-right: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .experience-item:nth-child(even) .year-container {
+        margin-right: 0;
+        margin-left: 20px;
+      }
+
+      .year {
+        background: var(--primary-color);
+        color: var(--text-color);
+        padding: 15px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        font-weight: bold;
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .details-container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 1;
+      }
+
+      .details-container .job-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .details-container .company {
+        font-size: 1.2rem;
+        color: var(--text-secondary-color);
+        margin-bottom: 10px;
+      }
+
+      .details-container .description {
+        font-size: 1rem;
+        color: var(--text-gray);
+      }
+
+      #contact {
+        background: var(--contact-bg);
+        color: var(--contact-text-color);
+        padding: 60px 20px;
+        text-align: center;
+      }
+
+      #contact h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+        font-family: "Merriweather", serif;
+      }
+
+      #contact p {
+        color: var(--contact-text-color);
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+      }
+
+      #contact .contact-links a {
+        display: inline-block;
+        background: var(--primary-color);
+        color: var(--contact-bg);
+        padding: 15px 30px;
+        margin: 10px;
+        border-radius: 12px;
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+        transition: transform var(--transition-speed),
+          box-shadow var(--transition-speed);
+        font-size: 1rem;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      #contact .contact-links a:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--hover-shadow);
+      }
+
+      @keyframes slideInFromLeft {
+        0% {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+        100% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      @keyframes slideInFromRight {
+        0% {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        100% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @media (max-width: 768px) {
+        header {
+          padding: 60px 20px;
+          text-align: center;
+        }
+        header .header-content {
+          max-width: 100%;
+        }
+        header .profile-picture img {
+          width: 200px;
+          height: 200px;
+        }
+        .skills-grid {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+      .dark-mode {
+        --primary-color: #d97706;
+        --secondary-color: #f7fafc;
+        --bg-color: #2d3748;
+        --text-color: #edf2f7;
+        --text-secondary-color: #a0aec0;
+        --text-gray: #cbd5e0;
+        --header-bg: #2d3748;
+        --skill-bg: #4a5568;
+        --skill-text-color: #edf2f7;
+        --contact-bg: #2d3748;
+        --contact-text-color: #edf2f7;
+      }
+      .dark-mode-toggle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: var(--primary-color);
+        color: var(--header-bg);
+        padding: 10px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: transform var(--transition-speed),
+          box-shadow var(--transition-speed);
+        font-size: 1rem;
+        font-weight: bold;
+      }
+      .dark-mode-toggle:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--hover-shadow);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌓</button>
+      <div class="header-content">
+        <h1>SAGAR DHAPATE</h1>
+        <p>
+          Full-Stack Developer | Passionate about building impactful digital
+          experiences
+        </p>
+        <button>Hire Me</button>
+      </div>
+      <div class="profile-picture">
+        <img
+          src="../static/images/WhatsApp_Image_2024-06-01_at_11.55.01-removebg.png"
+          alt="Ivan Dan"
+        />
+      </div>
+    </header>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Hello! I'm Ivan, a full-stack developer with a passion for creating
+        intuitive and dynamic user experiences. With a background in computer
+        science and years of experience in web development, I specialize in
+        building responsive and accessible websites and applications.
+      </p>
+    </section>
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill">
+          <img src="../static/images/HTML-removebg-preview.png" alt="HTML" />
+          <p>HTML</p>
+        </div>
+        <div class="skill">
+          <img src="" alt="CSS" />
+          <p>CSS</p>
+        </div>
+        <div class="skill">
+          <img src="../static/images/JavaScript_Logo.png" alt="JavaScript" />
+          <p>JavaScript</p>
+        </div>
+        <div class="skill">
+          <img
+            src="../static/images/react-icon-0-removebg-preview.png"
+            alt="React"
+          />
+          <p>React</p>
+        </div>
+        <div class="skill">
+          <img src="../static/images/docker-27.png" alt="Docker" />
+          <p>Docker</p>
+        </div>
+        <div class="skill">
+          <img src="../static/images/python-logo.png" alt="python" />
+          <p>Python</p>
+        </div>
+        <div class="skill">
+          <img src="../static/images/github_PNG20.png" alt="Node.js" />
+          <p>github</p>
+        </div>
+      </div>
+    </section>
+    <section id="portfolio">
+      <h2>Portfolio</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img
+            src="../static/images/Screenshot 2024-06-14 015801.png"
+            alt="Project 1"
+          />
+          <h3>Project 1</h3>
+        </div>
+        <div class="portfolio-item">
+          <img
+            src="../static/images/Screenshot 2024-06-14 015342.png"
+            alt="Project 2"
+            <a
+            h
+          />
+          <h3>Project 2</h3>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://via.placeholder.com/300" alt="Project 3" />
+          <h3>Project 3</h3>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://via.placeholder.com/300" alt="Project 4" />
+          <h3>Project 4</h3>
+        </div>
+      </div>
+    </section>
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+        <div class="timeline">
+          <div class="experience-item">
+            <div class="year-container">
+              <div class="year">2020</div>
+            </div>
+            <div class="details-container">
+              <div class="job-title">Software Developer</div>
+              <div class="company">ABC Corp</div>
+              <div class="description">
+                Developed and maintained web applications using...
+              </div>
+            </div>
+          </div>
+          <div class="experience-item">
+            <div class="year-container">
+              <div class="year">2019</div>
+            </div>
+            <div class="details-container">
+              <div class="job-title">Web Developer Intern</div>
+              <div class="company">XYZ Ltd</div>
+              <div class="description">
+                Assisted in the development of websites using...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        If you would like to get in touch, please feel free to reach out to me
+        via the following channels:
+      </p>
+      <div class="contact-links">
+        <a href="mailto:ivan@example.com">Email Me</a>
+        <a href="https://www.linkedin.com/in/ivan">LinkedIn</a>
+        <a href="https://github.com/ivan">GitHub</a>
+      </div>
+    </section>
+
+    <script>
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+      }
+    </script>
+  </body>
+</html>
